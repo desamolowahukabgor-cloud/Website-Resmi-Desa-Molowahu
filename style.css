@@ -238,53 +238,71 @@ footer {
     padding: 15px 0;
     text-align: center;
     font-size: 0.9rem;
-
 }
-/* --- KODE UNTUK MENU POPUP (MOBILE) --- */
-
-/* 1. Styling Tombol Hamburger */
-#menu-toggle {
-    display: none; 
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    z-index: 1001; /* Pastikan tombol di atas menu */
+/* --- Styling untuk Bagian Kantor Desa Hero --- */
+.kantor-desa-hero {
+    background-image: linear-gradient(rgba(169, 0, 0, 0.7), rgba(139, 0, 0, 0.7)), url('image/KANTOR DESA.jpg'); /* Ganti dengan path foto kantor desa Anda */
+    background-size: cover;
+    background-position: center;
+    color: var(--white-color);
+    text-align: center;
+    padding: 80px 0; /* Padding atas dan bawah */
+    margin-bottom: 40px; /* Jarak dengan section di bawahnya */
 }
 
-#menu-toggle .bar {
-    width: 100%;
-    height: 3px;
+.kantor-desa-hero .kantor-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.kantor-desa-hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    font-weight: 900;
+    color: var(--white-color); /* Pastikan judul putih agar kontras */
+    border-bottom: none; /* Hapus border bawah jika ada dari .section-title */
+}
+
+.kantor-desa-hero p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    display: inline-block;
     background-color: var(--white-color);
-    border-radius: 2px;
-    /* TAMBAHKAN INI: untuk animasi yang mulus */
-    transition: all 0.3s ease-in-out;
+    color: var(--primary-color);
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* === TAMBAHKAN KODE BARU DI BAWAH INI === */
-
-/* 2. Logika Animasi menjadi 'X' saat menu aktif */
-/* Kita menargetkan bar di dalam #menu-toggle KETIKA nav memiliki class .menu-active */
-
-nav.menu-active + #menu-toggle .bar:nth-child(1) {
-    /* Pindahkan bar pertama ke tengah dan putar 45 derajat */
-    transform: translateY(8px) rotate(45deg);
+.btn-primary:hover {
+    background-color: #f0f0f0; /* Sedikit lebih gelap saat hover */
+    color: var(--secondary-color);
 }
 
-nav.menu-active + #menu-toggle .bar:nth-child(2) {
-    /* Sembunyikan bar tengah */
-    opacity: 0;
+/* Penyesuaian agar judul di dalam .kantor-desa-hero tidak ikut styling .section-title */
+.kantor-desa-hero h2 {
+    border-bottom: none !important; /* Pastikan tidak ada border dari section-title */
+    padding-bottom: 0 !important;
 }
 
-nav.menu-active + #menu-toggle .bar:nth-child(3) {
-    /* Pindahkan bar ketiga ke tengah dan putar -45 derajat */
-    transform: translateY(-8px) rotate(-45deg);
-}
-
-/* === KODE LAMA DI BAWAH INI TIDAK PERLU DIUBAH === */
-
-/* Media Query: Aturan untuk layar kecil (lebar maks 768px) */
+/* Responsif untuk layar kecil */
 @media (max-width: 768px) {
-    ... (sisa kode CSS Anda yang lain tetap sama) ...
+    .kantor-desa-hero h2 {
+        font-size: 2rem;
+    }
+    .kantor-desa-hero p {
+        font-size: 1rem;
+    }
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
 }
