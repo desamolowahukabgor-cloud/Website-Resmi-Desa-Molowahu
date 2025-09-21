@@ -244,12 +244,13 @@ footer {
 
 /* 1. Styling Tombol Hamburger */
 #menu-toggle {
-    display: none; /* Sembunyikan di layar besar */
+    display: none; 
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
     height: 25px;
     cursor: pointer;
+    z-index: 1001; /* Pastikan tombol di atas menu */
 }
 
 #menu-toggle .bar {
@@ -257,53 +258,33 @@ footer {
     height: 3px;
     background-color: var(--white-color);
     border-radius: 2px;
+    /* TAMBAHKAN INI: untuk animasi yang mulus */
+    transition: all 0.3s ease-in-out;
 }
 
-/* 2. Media Query: Aturan untuk layar kecil (lebar maks 768px) */
-@media (max-width: 768px) {
-    /* Tampilkan tombol hamburger */
-    #menu-toggle {
-        display: flex;
-    }
-    
-    /* Ubah navigasi menjadi menu popup */
-    nav#main-nav {
-        position: fixed; /* Tetap di layar saat di-scroll */
-        top: 0;
-        right: 0;
-        width: 70%; /* Lebar menu popup 70% dari layar */
-        height: 100vh; /* Tinggi menu popup 100% dari layar */
-        background-color: var(--primary-color);
-        
-        /* Sembunyikan menu di luar layar ke kanan */
-        transform: translateX(100%); 
-        transition: transform 0.3s ease-in-out;
-        
-        z-index: 1000; /* Pastikan menu di atas konten lain */
-        
-        /* Tata letak link menu */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+/* === TAMBAHKAN KODE BARU DI BAWAH INI === */
 
-    /* Ini adalah class yang akan ditambahkan oleh JavaScript */
-    nav#main-nav.menu-active {
-        /* Pindahkan menu ke posisi terlihat (muncul) */
-        transform: translateX(0);
-    }
-    
-    /* Ubah list menu menjadi vertikal */
-    nav#main-nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    nav#main-nav ul li {
-        margin: 20px 0; /* Beri jarak antar link */
-    }
-    
-    nav#main-nav ul li a {
-        font-size: 1.5rem; /* Perbesar ukuran font agar mudah disentuh */
-    }
+/* 2. Logika Animasi menjadi 'X' saat menu aktif */
+/* Kita menargetkan bar di dalam #menu-toggle KETIKA nav memiliki class .menu-active */
+
+nav.menu-active + #menu-toggle .bar:nth-child(1) {
+    /* Pindahkan bar pertama ke tengah dan putar 45 derajat */
+    transform: translateY(8px) rotate(45deg);
+}
+
+nav.menu-active + #menu-toggle .bar:nth-child(2) {
+    /* Sembunyikan bar tengah */
+    opacity: 0;
+}
+
+nav.menu-active + #menu-toggle .bar:nth-child(3) {
+    /* Pindahkan bar ketiga ke tengah dan putar -45 derajat */
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* === KODE LAMA DI BAWAH INI TIDAK PERLU DIUBAH === */
+
+/* Media Query: Aturan untuk layar kecil (lebar maks 768px) */
+@media (max-width: 768px) {
+    ... (sisa kode CSS Anda yang lain tetap sama) ...
 }
